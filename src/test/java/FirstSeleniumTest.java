@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +13,10 @@ public class FirstSeleniumTest {
         //Dimension dimension = new Dimension(500, 500);
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://www.google.pl/");
+        driver.get("C:\\Users\\Admin\\Desktop\\Skibi\\KursSeleniumWebDriver\\PlikiPotrzebneDoKursu\\test.html");
+        driver.findElement(By.id("newPage")).click();
+        // driver.close(); // metoda close zamyka okno na który jest focus
+        driver.quit();  // metoda quit zamyka wszystkie okna
     }
 }
 
