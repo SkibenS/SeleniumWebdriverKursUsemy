@@ -14,7 +14,7 @@ public class FirstSeleniumTest {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("C:\\Users\\Admin\\Desktop\\Skibi\\KursSeleniumWebDriver\\PlikiPotrzebneDoKursu\\test.html");
-        
+
     }
 }
 
