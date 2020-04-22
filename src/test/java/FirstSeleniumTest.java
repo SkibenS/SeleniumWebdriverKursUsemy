@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import java.util.Set;
+
 
 public class FirstSeleniumTest {
 
@@ -15,13 +17,24 @@ public class FirstSeleniumTest {
         driver.manage().window().maximize();
         driver.get("C:\\Users\\Admin\\Desktop\\Skibi\\KursSeleniumWebDriver\\PlikiPotrzebneDoKursu\\test.html");
 
-        WebElement checkbox = driver.findElement(By.xpath("/html/body/label[2]/input"));
-        if (checkbox.isSelected()) {
-            System.out.println("Checkbox jest zaznaczony");
-            checkbox.click();
-            System.out.println("Checkbox został odznaczony");
-        } else {
-            System.out.println("Checkbox nie jest zaznaczony");
+        WebElement newPageButton = driver.findElement(By.id("newPage"));
+        String currentWindowName = driver.getWindowHandle();
+        newPageButton.click();
+        switchToNewWindow(driver,currentWindowName);
+        System.out.println("Tytuł strony to :" + driver.getTitle());
+        System.out.println("To jest nas obecny URL: " + driver.getCurrentUrl());
+    }
+
+    private void switchToNewWindow(WebDriver driver, String currentWindowName) {
+        System.out.println("Wartość dla obecnego okna to :" + currentWindowName);
+        Set<String> windows  = driver.getWindowHandles();
+        System.out.println("Ilość okien przeglądarki :" + windows.size());
+
+        for (String window : windows) {
+            if (!window.equals(currentWindowName)) {
+                driver.switchTo().window(window);
+            }
         }
     }
+
 }
