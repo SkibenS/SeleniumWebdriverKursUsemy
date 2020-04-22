@@ -15,7 +15,13 @@ public class FirstSeleniumTest {
         driver.manage().window().maximize();
         driver.get("C:\\Users\\Admin\\Desktop\\Skibi\\KursSeleniumWebDriver\\PlikiPotrzebneDoKursu\\test.html");
 
+        WebElement checkbox = driver.findElement(By.xpath("/html/body/label[2]/input"));
+        if (checkbox.isSelected()) {
+            System.out.println("Checkbox jest zaznaczony");
+            checkbox.click();
+            System.out.println("Checkbox został odznaczony");
+        } else {
+            System.out.println("Checkbox nie jest zaznaczony");
+        }
     }
 }
-
-
