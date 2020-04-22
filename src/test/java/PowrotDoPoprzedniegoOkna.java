@@ -7,10 +7,10 @@ import org.testng.annotations.Test;
 import java.util.Set;
 
 
-public class FirstSeleniumTest {
+public class PowrotDoPoprzedniegoOkna{
 
     @Test
-    public void googleOpenTest() {
+    public void powrotDoPoprzedniegoOkna() {
         String driverpatch = "C:\\Users\\Admin\\IdeaProjects\\SeleniumWebdriverKursUsemy\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverpatch);
         WebDriver driver = new ChromeDriver();
