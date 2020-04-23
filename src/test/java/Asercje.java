@@ -7,10 +7,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class FirstSeleniumTest {
+public class Asercje{
 
     @Test
-    public void googleOpenTest() {
+    public void asercje() {
         String driverpatch = "C:\\Users\\Admin\\IdeaProjects\\SeleniumWebdriverKursUsemy\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverpatch);
         WebDriver driver = new ChromeDriver();
