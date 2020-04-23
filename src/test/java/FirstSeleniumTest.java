@@ -4,16 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 
 public class FirstSeleniumTest {
 
+    private WebDriver driver;
+
     @Test
     public void googleOpenTest() {
         String driverpatch = "C:\\Users\\Admin\\IdeaProjects\\SeleniumWebdriverKursUsemy\\src\\main\\resources\\executables\\drivers\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", driverpatch);
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.google.pl/");
 
@@ -28,8 +31,14 @@ public class FirstSeleniumTest {
         System.out.println(driver.getTitle());
         Assert.assertEquals(expectedTitle,driver.getTitle());
         Assert.assertNotEquals("Test1","Test2");
-        Assert.assertTrue(expectedTitle.equals(driver.getTitle()));
+        Assert.assertEquals(driver.getTitle(), expectedTitle);
+        Assert.assertEquals(driver.getTitle(), "Zła nazwa", "Tytuły nie są równe");
 
+    }
+
+    @AfterClass
+    public void tearDown() {
+        System.out.println("Wykonuje się po klasie");
         driver.quit();
     }
 }
