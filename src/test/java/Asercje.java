@@ -28,7 +28,7 @@ public class Asercje{
         System.out.println(driver.getTitle());
         Assert.assertEquals(expectedTitle,driver.getTitle());
         Assert.assertNotEquals("Test1","Test2");
-        Assert.assertTrue(expectedTitle.equals(driver.getTitle()));
+        Assert.assertEquals(driver.getTitle(), expectedTitle);
 
         driver.quit();
     }
