@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class FirstSeleniumTest {
+public class BeforeClassTest{
 
     private WebDriver driver;
 
@@ -23,7 +23,7 @@ public class FirstSeleniumTest {
     }
 
     @Test
-    public void googleOpenTest() {
+    public void beforeClassTest() {
         driver.get("https://www.google.pl/");
         WebElement googleSearchbox = driver.findElement(By.name("q"));
         googleSearchbox.sendKeys("Selenium");
