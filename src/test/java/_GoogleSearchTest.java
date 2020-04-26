@@ -10,16 +10,14 @@ public class _GoogleSearchTest extends  _BaseSeleniumTest{
 
         @Test
         public void googleSearchTest() {
+        _SeleniumHelper helper = new _SeleniumHelper(driver);           // Tworzymy obiekt typu helper
         driver.get("https://www.google.pl/");
         WebElement googleSearchbox = driver.findElement(By.name("q"));
         googleSearchbox.sendKeys("Selenium");
-        // Kliknięcie prawym przycoskiem myszy
-
-        Actions action = new Actions(driver);
-        action.contextClick().build().perform();
-
+        helper.takeScreenShot();                                        // wywołujemy stworzenie screenshota
         googleSearchbox.sendKeys(Keys.ENTER);
         driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/a/h3")).click();
+        helper.takeScreenShot();                                        // wywołujemy stworzenie screenshota
         Assert.assertEquals(driver.getTitle(),"SeleniumHQ Browser Automation");
     }
 }

@@ -19,6 +19,6 @@ public abstract class _BaseSeleniumTest {
     @AfterTest
     public void tearDown() {
         System.out.println("After Test");
-        driver.quit();
+        //driver.quit();
     }
 }
