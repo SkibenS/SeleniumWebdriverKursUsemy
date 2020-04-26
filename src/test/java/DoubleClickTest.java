@@ -8,12 +8,12 @@ public class DoubleClickTest extends _BaseSeleniumTest{
 
     @Test
     public void doubleClickTest() {
-
+        _SeleniumHelper helper = new _SeleniumHelper(driver);
         driver.get("C:\\Users\\Admin\\Desktop\\Skibi\\KursSeleniumWebDriver\\PlikiPotrzebneDoKursu\\doubleclick.html");
         WebElement clickMeTwiceButton = driver.findElement(By.id("bottom"));
-
         Actions action = new Actions(driver);
         action.moveToElement(clickMeTwiceButton).doubleClick().build().perform();
+        helper.takeScreenShot();
         Assert.assertTrue(driver.getWindowHandles().size()>1);
 
     }
