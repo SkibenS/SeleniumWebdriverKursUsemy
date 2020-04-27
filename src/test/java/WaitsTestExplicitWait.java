@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,6 +24,7 @@ public class WaitsTestExplicitWait extends _BaseSeleniumTest {
     public void waitForWebElement (By locator) {
 
         Wait<WebDriver> wait = new WebDriverWait(driver, 10L);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
+        //  wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 }
