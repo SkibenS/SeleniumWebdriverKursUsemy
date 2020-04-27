@@ -3,10 +3,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class WaitsTest extends _BaseSeleniumTest {
+public class WaitsTestThreadSleep extends _BaseSeleniumTest {
 
     @Test
-    public void waitsTest() throws InterruptedException {
+    public void waitsTestThreadSleep() throws InterruptedException {
 
         driver.get("file:///C:/Users/Admin/Desktop/Skibi/KursSeleniumWebDriver/PlikiPotrzebneDoKursu/Waits.html");
         driver.findElement(By.id("clickOnMe")).click();
