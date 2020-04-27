@@ -1,23 +1,25 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 
-public class _GoogleSearchTest extends  _BaseSeleniumTest{
+public class _GoogleSearchTest extends _BaseSeleniumTest {
+
+        @FindBy(name = "q")
+        private WebElement searchInput;
 
         @Test
         public void googleSearchTest() {
-        _SeleniumHelper helper = new _SeleniumHelper(driver);           // Tworzymy obiekt typu helper
+        _SeleniumHelper helper = new _SeleniumHelper(driver);
+        PageFactory.initElements(driver, this);
         driver.get("https://www.google.pl/");
-        WebElement googleSearchbox = driver.findElement(By.name("q"));
-        googleSearchbox.sendKeys("Selenium");
-        helper.takeScreenShot();                                        // wywołujemy stworzenie screenshota
-        googleSearchbox.sendKeys(Keys.ENTER);
+        searchInput.sendKeys("Selenium");
+        searchInput.sendKeys(Keys.ENTER);
         driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/a/h3")).click();
-        helper.takeScreenShot();                                        // wywołujemy stworzenie screenshota
         Assert.assertEquals(driver.getTitle(),"SeleniumHQ Browser Automation");
     }
 }
