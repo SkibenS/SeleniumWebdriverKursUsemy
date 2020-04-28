@@ -1,8 +1,9 @@
+import com.travelers.tests._BaseSeleniumTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-public class HoverTest extends _BaseSeleniumTest{
+public class HoverTest extends _BaseSeleniumTest {
 
     @Test
     public void howerTest() {
