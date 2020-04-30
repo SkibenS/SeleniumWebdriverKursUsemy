@@ -1,16 +1,12 @@
 package com.travelers.pages;
 
-import org.openqa.selenium.By;
+import com.travelers.helpers.SeleniumHelper;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.nio.file.WatchEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class HopePage {
 
@@ -38,68 +34,54 @@ public class HopePage {
     @FindBy(xpath = "//button[text()=' Search']")
     private WebElement performSearchButton;
 
-    @FindBy(xpath = "//table[@class='bgwhite table table-striped']")
-    private WebElement resultsTable;
+
+    @FindBy(xpath = "//div[@class='select2-result-label']")
+    private WebElement selectResult;
+
+    private SeleniumHelper helper;
+
+    private WebDriver driver;
 
     public HopePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.helper = new SeleniumHelper(driver);
+        this.driver = driver;
     }
 
-    public void sendKeysToCityInput(String CityName) throws InterruptedException {
+    public HopePage sendKeysToCityInput(String CityName) {
         searchSpan.click();
         searchCityInput.sendKeys(CityName);
-        Thread.sleep(5000);
+        /*By locationLabel = By.xpath("//div[@class='select2-result-label']");
+        helper.waitForElementToBeDisplaced(locationLabel);*/
+        helper.waitForElementToBeDisplaced(selectResult);       // Lokalizowanie elemetu za pomocą WebElementu
         searchCityInput.sendKeys(Keys.ENTER);
+        return this;
     }
 
-    public void setDateRange (String checkInDate, String checkOutDate) {
+    public HopePage setDateRange (String checkInDate, String checkOutDate) {
         checkInInput.sendKeys(checkInDate);
         checkOutInput.sendKeys(checkOutDate);
         checkOutInput.click();
+        return this;
     }
 
-    public void openTravellersInput () throws InterruptedException {
-        Thread.sleep(2000);
+    public HopePage openTravellersModal() {
         travellersInput.click();
+        return this;
     }
 
-    public void addAdultPerson() {
+    public HopePage addAdultPerson() {
         adultPlusButton.click();
+        return this;
     }
 
-    public void addChildPerson() {
+    public HopePage addChildPerson() {
+        helper.waitForElementToBeDisplaced(childPlusButton);
         childPlusButton.click();
+        return this;
     }
 
     public void performSearchButton() {
         performSearchButton.click();
     }
-
-    public List<String> getHotelNames() throws InterruptedException {
-        List<String> hotelNames = new ArrayList<>();
-        Thread.sleep(3000);
-        List<WebElement> hotelNamesWebElements = resultsTable.findElements(By.xpath("//h4//b"));
-        for (WebElement hotelNameElement : hotelNamesWebElements) {
-            System.out.println(hotelNameElement.getText());
-            hotelNames.add((hotelNameElement.getText()));
-        }
-        return hotelNames;
-    }
-
-    public List<String> getHotelPrices() throws InterruptedException {
-        List<String> hotelPrices = new ArrayList<>();
-        Thread.sleep(3000);
-        List<WebElement> hotelPricesWebElements = resultsTable.findElements(By.xpath("//div[contains(@class,'price_tab')]//b"));
-        for (WebElement hotelPriceElement: hotelPricesWebElements) {
-            System.out.println(hotelPriceElement.getText());
-            hotelPrices.add(hotelPriceElement.getText());
-        }
-        return hotelPrices;
-    }
-
-/*  public List<String> getHotelPrices() {
-        List<WebElement> hotelPrices = resultsTable.findElements(By.xpath("//div[contains(@class,'price_tab')]//b"));
-        List <String> prices = hotelPrices.stream().map(element -> element.getText()).collect(Collectors.toList());
-        return prices;
-    } */
 }
